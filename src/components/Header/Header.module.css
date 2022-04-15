@@ -16,3 +16,8 @@ header {
 .navbar__item {
    padding: 5px;
 }
+
+.navbar__link {
+   text-decoration: none;
+   color: #181818;
+}
