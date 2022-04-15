@@ -1,7 +1,18 @@
 header {
-   font-size: 25px;
+   display: flex;
+   justify-content: space-evenly;
+
+   background-color: aqua;
 }
 
 .header_logo {
    display: block;
+}
+
+.navbar {
+   display: flex;
+}
+
+.navbar__item {
+   padding: 5px;
 }
