@@ -1,18 +1,18 @@
 import './App.css';
 import React from 'react';
 import Header from './components/Header/Header';
-import ProfilePage from './components/ProfilePage/ProfilePage';
-import FeedPage from './components/FeedPage/FeedPage';
+import Content from './components/Content';
+import { BrowserRouter } from 'react-router-dom';
+
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <div class="content_wrap">
-        <ProfilePage />
-        <FeedPage />
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        <Content />
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 
