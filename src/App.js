@@ -11,7 +11,6 @@ import NoticesPage from './components/NoticesPage/NoticesPage';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import ChatMessage from './components/ChatPage/ChatMessage/ChatMessage';
 
-
 function App(props) {
   return (
     <div className="App">
@@ -22,7 +21,7 @@ function App(props) {
           <Route path='/FeedPage' element={<FeedPage />}></Route>
           <Route path='/NetworkPage' element={<NetworkPage />}></Route>
           <Route path='/JobsPage' element={<JobsPage />}></Route>
-          <Route path='/ChatPage' element={<ChatPage dialogs ={props.dialogs}/>}>
+          <Route path='/ChatPage' element={<ChatPage state={props.state.ChatPage} />}>
             <Route path=":DialogId" element={<ChatMessage />} />
           </Route>
           <Route path='/NoticesPage' element={<NoticesPage />}></Route>

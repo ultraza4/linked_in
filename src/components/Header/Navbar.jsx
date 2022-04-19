@@ -9,11 +9,11 @@ import notices_logo from "./../../assets/images/notices_logo.png"
 
 const NavbarItem = (props) => {
 
-  const setActive = ({isActive}) => isActive ? s.navbar__link+" "+s.active : s.navbar__link;
+  const setActive = ({ isActive }) => isActive ? s.navbar__link + " " + s.active : s.navbar__link;
 
   return (
     <div className={s.navbar__item}>
-      <NavLink  to={props.path} className = {setActive}>
+      <NavLink to={props.path} className={setActive}>
         <img src={props.img_src} alt="" />{props.name}
       </NavLink>
     </div>
@@ -24,18 +24,22 @@ const Navbar = () => {
   return (
     <div className={s.navbar}>
       <div className={s.navbar__pages}>
-        <NavbarItem path='FeedPage' name='Feed' img_src={feed_logo}/>
-        <NavbarItem path='NetworkPage' name='Network' img_src={network_logo}/>
-        <NavbarItem path='JobsPage' name='Jobs' img_src={jobs_logo}/>
-        <NavbarItem path='ChatPage' name='Chat' img_src={chat_logo}/>
-        <NavbarItem path='NoticesPage' name='Notices' img_src={notices_logo}/>
+        <NavbarItem path='FeedPage' name='Feed' img_src={feed_logo} />
+        <NavbarItem path='NetworkPage' name='Network' img_src={network_logo} />
+        <NavbarItem path='JobsPage' name='Jobs' img_src={jobs_logo} />
+        <NavbarItem path='ChatPage' name='Chat' img_src={chat_logo} />
+        <NavbarItem path='NoticesPage' name='Notices' img_src={notices_logo} />
       </div>
       <div className={s.navbar__search}>
         <div className={s.searchArea}>
           <img src="/" alt="" />
           <input name="search" id="" placeholder="Search"></input>
         </div>
-        <NavbarItem path='ProfilePage' name='Profile' />
+        <div className={s.profile}>
+          <NavLink to="ProfilePage" className="">
+            Profile
+          </NavLink>
+        </div>
       </div>
     </div>
   );

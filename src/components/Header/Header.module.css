@@ -56,7 +56,7 @@ header {
    color: #181818;
 }
 
-.active{
+.active {
    color: #0275B1;
 }
 
@@ -64,6 +64,7 @@ header {
    min-width: 367px;
    width: 100%;
 }
+
 .searchArea input {
    outline: none;
    resize: none;
@@ -74,7 +75,10 @@ header {
    border: none;
 
    transform: translateY(-50%);
+
+   font-size: 16px;
 }
+
 .searchArea input::placeholder {
    color: #CECECE;
    font-weight: 300;

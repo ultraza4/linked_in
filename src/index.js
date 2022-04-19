@@ -4,19 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-
-let dialogs = [
-  { id: 1, name: 'Dimych' },
-  { id: 2, name: 'Azamat' },
-  { id: 3, name: 'Daut' },
-  { id: 4, name: 'Chitos' }
-]
+import state from './redux/state'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App dialogs = {dialogs}/>
+      <App state={state} />
     </BrowserRouter>
   </React.StrictMode>
 );
