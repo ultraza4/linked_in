@@ -1,16 +1,14 @@
 import React from "react";
 import s from './Header.module.css';
-import HeaderProfile from "./HeaderProfile";
 import Navbar from "./Navbar";
-
+import logo from "./../../assets/images/logo.png";
 const Header = () => {
    return (
       <header>
          <div className={s.header_logo}>
-            <img src="/" alt="logo" />
+            <img src={logo} alt="logo" />
          </div>
-         <Navbar /> 
-         <HeaderProfile />
+         <Navbar />
          <div className={s.header_other}>
             <img src="/" alt="other" />
          </div>

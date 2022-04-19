@@ -5,21 +5,14 @@ import ChatMessage from './ChatMessage/ChatMessage'
 import s from './ChatPage.module.css'
 import { useParams } from "react-router-dom"
 
-const ChatPage = () => {
-
-    let dialogs = [
-        { id: 1, name: 'Dimych' },
-        { id: 2, name: 'Azamat' },
-        { id: 3, name: 'Daut' },
-        { id: 4, name: 'Chitos' }
-    ]
+const ChatPage = (props) => {
     let messages = [
         { id: 1, message: 'Hello' },
         { id: 2, message: 'Azamat' },
         { id: 3, message: 'Mirza' },
     ]
 
-    let ChatItems = dialogs.map(d => <ChatItem name={d.name} id={d.id} />)
+    let ChatItems = props.dialogs.map(d => <ChatItem name={d.name} id={d.id} />)
     let ChatMessages = messages.map(m => <ChatMessage message={m.message} id={m.id} />)
 
     return (
