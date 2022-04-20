@@ -17,7 +17,7 @@ function App(props) {
 
       <Routes>
         <Route path='/' element={<Layout />}>
-          <Route path='/ProfilePage' element={<ProfilePage />}></Route>
+          <Route path='/ProfilePage' element={<ProfilePage state={props.state.ProfilePage} addPost={props.addPost} />}></Route>
           <Route path='/FeedPage' element={<FeedPage />}></Route>
           <Route path='/NetworkPage' element={<NetworkPage />}></Route>
           <Route path='/JobsPage' element={<JobsPage />}></Route>

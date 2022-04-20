@@ -1,4 +1,37 @@
 .ProfilePage {
    display: grid;
-   grid-template-columns: 1fr 1fr;
+   grid-template-areas:
+      'h d'
+      'ap ap'
+      'p p';
+}
+
+.Header {
+   grid-area: h;
+   padding: 10px;
+}
+
+.Dashboard {
+   grid-area: d;
+   padding: 10px;
+}
+
+.AddPost {
+   grid-area: ap;
+   padding: 10px;
+}
+
+.ProfilePage__textarea {
+   resize: none;
+}
+
+.ProfilePage__posts {
+   grid-area: p;
+   padding: 10px;
+}
+
+.PostsItem {
+   padding: 10px;
+   margin: 10px;
+   background-color: aqua;
 }
