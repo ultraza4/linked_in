@@ -4,18 +4,22 @@ import PostsItem from "./PostsItem";
 
 const ProfilePage = (props) => {
 
-    let Posts = props.state.posts.map(p => <PostsItem message={p.message} />);
+    let Posts = props.ProfilePage.posts.map(p => <PostsItem message={p.message} />);
     let newPostElement = React.createRef();
-    const AddPost = () => {
+    
+    let AddPost = () => {
+        props.addPost();
+    }
+    let onChangeText = () =>{
         let text = newPostElement.current.value;
-        props.AddPost(text);
+        props.updateNewPostText(text);
     }
     return (
         <div className={s.ProfilePage}>
             <div className={s.Header}>Header</div>
             <div className={s.Dashboard}>Dashboard</div>
             <div className={s.AddPost}>
-                <textarea ref={newPostElement} className={s.ProfilePage__textarea} name="post" id="" cols="30" rows="2"></textarea>
+                <textarea ref={newPostElement} className={s.ProfilePage__textarea} onChange={onChangeText} value={props.ProfilePage.newPostText} name="post" id="" cols="30" rows="2" />
                 <button className={s.btn} onClick={AddPost}>Add Post</button>
             </div>
             <div className={s.ProfilePage__posts}>

@@ -1,5 +1,5 @@
 import React from "react"
-import { Outlet } from "react-router-dom"
+import { Outlet, Routes } from "react-router-dom"
 import ChatItem from './ChatItem/ChatItem'
 import ChatMessage from './ChatMessage/ChatMessage'
 import s from './ChatPage.module.css'
@@ -12,13 +12,12 @@ const ChatPage = (props) => {
 
     return (
         <div className={s.ChatPage}>
-            <div className={s.chatItems}>
-                {ChatItems}
-            </div>
-            <div className={s.messages}>
-                <Outlet />{ChatMessages}
-            </div>
-            <Outlet />
+                <div className={s.chatItems}>
+                    {ChatItems}
+                </div>
+                <div className={s.messages}>
+                    {ChatMessages}
+                </div>
         </div>
     )
 }
