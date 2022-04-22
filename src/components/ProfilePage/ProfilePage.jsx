@@ -3,10 +3,9 @@ import s from "./ProfilePage.module.css"
 import PostsItem from "./PostsItem";
 
 const ProfilePage = (props) => {
-
+ 
     let Posts = props.ProfilePage.posts.map(p => <PostsItem message={p.message} />);
     let newPostElement = React.createRef();
-    
     let AddPost = () => {
         props.addPost();
     }

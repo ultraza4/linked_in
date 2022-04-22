@@ -24,11 +24,11 @@ function App(props) {
           <Route path='/FeedPage' element={<FeedPage />}></Route>
           <Route path='/NetworkPage' element={<NetworkPage />}></Route>
           <Route path='/JobsPage' element={<JobsPage />}></Route>
-          <Route path='/ChatPage' element={<ChatPage state={props.state.ChatPage} />}></Route>
+          <Route path='/ChatPage' element={<ChatPage ChatPage={props.state.ChatPage} />}></Route>
           <Route path='/NoticesPage' element={<NoticesPage />}></Route>
         </Route>
       </Routes>
-
+      
     </div>
   );
 }
