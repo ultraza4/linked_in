@@ -19,12 +19,11 @@ function App(props) {
         <Route path='/' element={<Layout />}>
           <Route path='/ProfilePage' element={<ProfilePage 
             ProfilePage={props.state.ProfilePage} 
-            addPost={props.addPost} 
-            updateNewPostText ={props.updateNewPostText}/>}></Route>
+            dispatch={props.dispatch} />}></Route>
           <Route path='/FeedPage' element={<FeedPage />}></Route>
           <Route path='/NetworkPage' element={<NetworkPage />}></Route>
           <Route path='/JobsPage' element={<JobsPage />}></Route>
-          <Route path='/ChatPage' element={<ChatPage ChatPage={props.state.ChatPage} />}></Route>
+          <Route path='/ChatPage' element={<ChatPage ChatPage={props.state.ChatPage} dispatch={props.dispatch} />}></Route>
           <Route path='/NoticesPage' element={<NoticesPage />}></Route>
         </Route>
       </Routes>

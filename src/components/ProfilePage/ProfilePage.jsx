@@ -1,17 +1,19 @@
 import React, { createRef } from "react";
 import s from "./ProfilePage.module.css"
 import PostsItem from "./PostsItem";
+import { addPostActionCreator, updateNewPostTextActionCreator } from "../../redux/state";
 
 const ProfilePage = (props) => {
  
     let Posts = props.ProfilePage.posts.map(p => <PostsItem message={p.message} />);
     let newPostElement = React.createRef();
+    
     let AddPost = () => {
-        props.addPost();
+        props.dispatch(addPostActionCreator());
     }
     let onChangeText = () =>{
         let text = newPostElement.current.value;
-        props.updateNewPostText(text);
+        props.dispatch(updateNewPostTextActionCreator(text));
     }
     return (
         <div className={s.ProfilePage}>
