@@ -36,7 +36,7 @@ const Navbar = () => {
           <input name="search" id="" placeholder="Search"></input>
         </div>
         <div className={s.profile}>
-          <NavLink to="ProfilePage" className="">
+          <NavLink to="ProfilePageContainer" className="">
             Profile
           </NavLink>
         </div>

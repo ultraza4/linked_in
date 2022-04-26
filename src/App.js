@@ -8,8 +8,7 @@ import NetworkPage from './components/NetworkPage/NetworkPage';
 import JobsPage from './components/JobsPage/JobsPage';
 import ChatPage from './components/ChatPage/ChatPage';
 import NoticesPage from './components/NoticesPage/NoticesPage';
-import ProfilePage from './components/ProfilePage/ProfilePage';
-import ChatMessage from './components/ChatPage/ChatMessage/ChatMessage';
+import ProfilePageContainer from './components/ProfilePage/ProfilePageContainer';
 
 function App(props) {
   return (
@@ -17,9 +16,8 @@ function App(props) {
 
       <Routes>
         <Route path='/' element={<Layout />}>
-          <Route path='/ProfilePage' element={<ProfilePage 
-            ProfilePage={props.state.ProfilePage} 
-            dispatch={props.dispatch} />}></Route>
+          <Route path='/ProfilePageContainer' element={<ProfilePageContainer 
+            store = {props.store} />}></Route>
           <Route path='/FeedPage' element={<FeedPage />}></Route>
           <Route path='/NetworkPage' element={<NetworkPage />}></Route>
           <Route path='/JobsPage' element={<JobsPage />}></Route>

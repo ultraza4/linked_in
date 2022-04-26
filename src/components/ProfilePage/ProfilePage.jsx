@@ -1,17 +1,13 @@
 import s from "./ProfilePage.module.css"
-import PostsItem from "./PostsItem";
-import { addPostActionCreator, updateNewPostTextActionCreator } from "../../redux/ProfilePageReducer";
 
 const ProfilePage = (props) => {
 
-    let Posts = props.ProfilePage.posts.map(p => <PostsItem message={p.message} />);
-
     let AddPost = () => {
-        props.dispatch(addPostActionCreator());
+        props.AddPost();
     }
     let onChangeText = (event) => {
         let text = event.target.value;
-        props.dispatch(updateNewPostTextActionCreator(text));
+        props.updateNewPostText(text);
     }
     return (
         <div className={s.ProfilePage}>
@@ -22,7 +18,7 @@ const ProfilePage = (props) => {
                 <button className={s.btn} onClick={AddPost}>Add Post</button>
             </div>
             <div className={s.ProfilePage__posts}>
-                {Posts}
+                {props.posts}
             </div>
         </div>
     )
