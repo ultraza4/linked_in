@@ -1,6 +1,8 @@
+import PostsItem from "./PostsItem";
 import s from "./ProfilePage.module.css"
 
 const ProfilePage = (props) => {
+    let Posts = props.ProfilePage.posts.map((m) => <PostsItem message ={m.message}/>)
 
     let AddPost = () => {
         props.AddPost();
@@ -18,7 +20,7 @@ const ProfilePage = (props) => {
                 <button className={s.btn} onClick={AddPost}>Add Post</button>
             </div>
             <div className={s.ProfilePage__posts}>
-                {props.posts}
+                {Posts}
             </div>
         </div>
     )
