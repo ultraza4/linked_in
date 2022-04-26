@@ -8,13 +8,13 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (store) => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        onSendMessage: () => { store.dispatch(sendMessageActionCreator()) },
-        onUpdateNewMessageText: (text) => { store.dispatch(updateNewMessageTextActionCreator(text)) }
+        onSendMessage: () => { dispatch(sendMessageActionCreator()) },
+        onUpdateNewMessageText: (text) => { dispatch(updateNewMessageTextActionCreator(text)) }
     }
 }
 
-const ChatPageContainer = connect(mapStateToProps, mapDispatchToProps)(ChatPage)
+const ChatPageContainer = connect(mapStateToProps, mapDispatchToProps)(ChatPage);
 
 export default ChatPageContainer;

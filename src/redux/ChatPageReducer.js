@@ -18,17 +18,21 @@ let initState = {
 
 const ChatPageReducer = (state = initState, action) => {
    switch (action.type) {
-      case SEND_MESSAGE:
+      case SEND_MESSAGE: {
          let newMessage = {
             id: 5,
             message: state.newMessageText,
          };
-         state.messages.push(newMessage);
-         state.newMessageText = "";
-         return state;
+         let stateCopy = { ...state };
+         stateCopy.messages = [...state.messages];
+         stateCopy.messages.push(newMessage);
+         stateCopy.newMessageText = "";
+         return stateCopy;
+      }
       case UPDATE_NEW_MESSAGE_TEXT:
-         state.newMessageText = action.newMessage;
-         return state;
+         let stateCopy = { ...state };
+         stateCopy.newMessageText = action.newMessage;
+         return stateCopy;
       default:
          return state;
    }
