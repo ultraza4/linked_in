@@ -1,5 +1,4 @@
 import React from "react"
-import { sendMessageActionCreator, updateNewMessageTextActionCreator } from "../../redux/ChatPageReducer"
 import ChatItem from './ChatItem/ChatItem'
 import ChatMessage from './ChatMessage/ChatMessage'
 import s from './ChatPage.module.css'
@@ -9,11 +8,11 @@ const ChatPage = (props) => {
     let ChatMessages = props.ChatPage.messages.map(m => <ChatMessage message={m.message} id={m.id} />)
 
     let SendMessage = () => {
-        props.dispatch(sendMessageActionCreator());
+        props.onSendMessage();
     }
     let updateNewMessageText = (event) => {
         let text = event.target.value;
-        props.dispatch(updateNewMessageTextActionCreator(text));
+        props.onUpdateNewMessageText(text);
     }
 
     return (

@@ -27,7 +27,7 @@ const Navbar = () => {
         <NavbarItem path='FeedPage' name='Feed' img_src={feed_logo} />
         <NavbarItem path='NetworkPage' name='Network' img_src={network_logo} />
         <NavbarItem path='JobsPage' name='Jobs' img_src={jobs_logo} />
-        <NavbarItem path='ChatPage' name='Chat' img_src={chat_logo} />
+        <NavbarItem path='ChatPageContainer' name='Chat' img_src={chat_logo} />
         <NavbarItem path='NoticesPage' name='Notices' img_src={notices_logo} />
       </div>
       <div className={s.navbar__search}>
