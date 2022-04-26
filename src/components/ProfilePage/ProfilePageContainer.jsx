@@ -14,6 +14,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const ProfilePageContainer = connect(mapStateToProps,mapDispatchToProps)(ProfilePage)
+const ProfilePageContainer = connect(mapStateToProps, mapDispatchToProps)(ProfilePage)
 
 export default ProfilePageContainer;

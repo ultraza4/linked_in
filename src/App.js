@@ -16,16 +16,15 @@ function App(props) {
 
       <Routes>
         <Route path='/' element={<Layout />}>
-          <Route path='/ProfilePageContainer' element={<ProfilePageContainer 
-            store = {props.store} />}></Route>
+          <Route path='/ProfilePageContainer' element={<ProfilePageContainer />}></Route>
           <Route path='/FeedPage' element={<FeedPage />}></Route>
           <Route path='/NetworkPage' element={<NetworkPage />}></Route>
           <Route path='/JobsPage' element={<JobsPage />}></Route>
-          <Route path='/ChatPageContainer' element={<ChatPageContainer store = {props.store} />}></Route>
+          <Route path='/ChatPageContainer' element={<ChatPageContainer />}></Route>
           <Route path='/NoticesPage' element={<NoticesPage />}></Route>
         </Route>
       </Routes>
-      
+
     </div>
   );
 }
