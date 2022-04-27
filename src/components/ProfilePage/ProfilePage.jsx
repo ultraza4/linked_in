@@ -2,7 +2,7 @@ import PostsItem from "./PostsItem";
 import s from "./ProfilePage.module.css"
 
 const ProfilePage = (props) => {
-    let Posts = props.ProfilePage.posts.map((m) => <PostsItem message ={m.message}/>)
+    let Posts = props.ProfilePage.posts.map((m) => <PostsItem key = {m.id} message ={m.message}/>)
 
     let AddPost = () => {
         props.AddPost();

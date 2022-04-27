@@ -4,8 +4,8 @@ import ChatMessage from './ChatMessage/ChatMessage'
 import s from './ChatPage.module.css'
 
 const ChatPage = (props) => {
-    let ChatItems = props.ChatPage.dialogs.map(d => <ChatItem name={d.name} id={d.id} />)
-    let ChatMessages = props.ChatPage.messages.map(m => <ChatMessage message={m.message} id={m.id} />)
+    let ChatItems = props.ChatPage.dialogs.map(d => <ChatItem key = {d.id} name={d.name} id={d.id} />)
+    let ChatMessages = props.ChatPage.messages.map(m => <ChatMessage key = {m.id} message={m.message} id={m.id} />)
 
     let SendMessage = () => {
         props.onSendMessage();
