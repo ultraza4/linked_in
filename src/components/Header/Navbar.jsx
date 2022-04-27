@@ -25,7 +25,7 @@ const Navbar = () => {
     <div className={s.navbar}>
       <div className={s.navbar__pages}>
         <NavbarItem path='FeedPage' name='Feed' img_src={feed_logo} />
-        <NavbarItem path='NetworkPage' name='Network' img_src={network_logo} />
+        <NavbarItem path='NetworkPageContainer' name='Network' img_src={network_logo} />
         <NavbarItem path='JobsPage' name='Jobs' img_src={jobs_logo} />
         <NavbarItem path='ChatPageContainer' name='Chat' img_src={chat_logo} />
         <NavbarItem path='NoticesPage' name='Notices' img_src={notices_logo} />
