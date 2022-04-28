@@ -4,9 +4,6 @@ const SET_USERS = 'SET_USERS'
 
 let initState = {
    users: [
-      { id: 1, subscribed: true, fullName: "Kagarman A.N", status: "Hello World Bitches", location: { country: "Kazakhstan", city: "Oskemen" } },
-      { id: 2, subscribed: true, fullName: "Rizabekov D.", status: "Hello World Bitches", location: { country: "Kazakhstan", city: "Almaty" } },
-      { id: 3, subscribed: false, fullName: "Sarsembaev R.", status: "Hello World Bitches", location: { country: "Kazakhstan", city: "Astana" } },
    ]
 }
 
@@ -19,7 +16,7 @@ const NetworkPageReducer = (state = initState, action) => {
             ...state,
             users: state.users.map(u => {
                if (u.id === action.userID) {
-                  return { ...u, subscribed: true };
+                  return { ...u, followed: true };
                }
                return u;
             })
@@ -30,7 +27,7 @@ const NetworkPageReducer = (state = initState, action) => {
             ...state,
             users: state.users.map(u => {
                if (u.id === action.userID) {
-                  return { ...u, subscribed: false };
+                  return { ...u, followed: false };
                }
                return u;
             })
