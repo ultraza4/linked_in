@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { followAC, unfollowAC, setUsersAC, setActivePageAC, setTotalUsersCountAC, toggleIsFetchingAC } from "./../../redux/NetworkPageReducer"
+import { follow, unfollow, setUsers, setActivePage, setTotalUsersCount, toggleIsFetching } from "./../../redux/NetworkPageReducer"
 import * as axios from "axios";
 import NetworkPage from "./NetworkPage";
 import preLoader from "./../../assets/images/spinner.svg"
@@ -49,17 +49,26 @@ const mapStateToProps = (state) => {
    }
 }
 
-const mapDispatchToProps = (dispatch) => {
-   return {
-      follow: (userID) => dispatch(followAC(userID)),
-      unfollow: (userID) => dispatch(unfollowAC(userID)),
-      setUsers: (users) => dispatch(setUsersAC(users)),
-      setActivePage: (page) => dispatch(setActivePageAC(page)),
-      setTotalUsersCount: (count) => dispatch(setTotalUsersCountAC(count)),
-      toggleIsFetching: (isFetching) => dispatch(toggleIsFetchingAC(isFetching))
-   }
-}
+// const mapDispatchToProps = (dispatch) => {
+//    return {
+//       follow: (userID) => dispatch(followAC(userID)),
+//       unfollow: (userID) => dispatch(unfollowAC(userID)),
+//       setUsers: (users) => dispatch(setUsersAC(users)),
+//       setActivePage: (page) => dispatch(setActivePageAC(page)),
+//       setTotalUsersCount: (count) => dispatch(setTotalUsersCountAC(count)),
+//       toggleIsFetching: (isFetching) => dispatch(toggleIsFetchingAC(isFetching))
+//    }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NetworkPageAPI);
+
+
+export default connect(mapStateToProps, {
+   follow,
+   unfollow,
+   setUsers,
+   setActivePage,
+   setTotalUsersCount,
+   toggleIsFetching,
+})(NetworkPageAPI);
 
 

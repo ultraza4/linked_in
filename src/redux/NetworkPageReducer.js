@@ -67,11 +67,11 @@ const NetworkPageReducer = (state = initState, action) => {
 
 }
 
-export const followAC = (userID) => ({ type: FOLLOW, userID })
-export const unfollowAC = (userID) => ({ type: UNFOLLOW, userID })
-export const setUsersAC = (users) => ({ type: SET_USERS, users })
-export const setActivePageAC = (currentPage) => ({ type: SET_ACTIVE_PAGE, currentPage })
-export const setTotalUsersCountAC = (count) => ({ type: SET_TOTAL_USERS_COUNT, count })
-export const toggleIsFetchingAC = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
+export const follow = (userID) => ({ type: FOLLOW, userID })
+export const unfollow = (userID) => ({ type: UNFOLLOW, userID })
+export const setUsers = (users) => ({ type: SET_USERS, users })
+export const setActivePage = (currentPage) => ({ type: SET_ACTIVE_PAGE, currentPage })
+export const setTotalUsersCount = (count) => ({ type: SET_TOTAL_USERS_COUNT, count })
+export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
 
 export default NetworkPageReducer;
