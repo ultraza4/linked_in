@@ -36,9 +36,7 @@ const Navbar = () => {
           <input name="search" id="" placeholder="Search"></input>
         </div>
         <div className={s.profile}>
-          <NavLink to="ProfilePageContainer" className="">
-            Profile
-          </NavLink>
+          <NavbarItem path='ProfilePageContainer' name='Profile' img_src={feed_logo} />
         </div>
       </div>
     </div>
