@@ -16,7 +16,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<Layout />}>
-          <Route path='ProfilePageContainer' element={<ProfilePageContainer />}></Route>
+          <Route path='ProfilePageContainer/*' element={<ProfilePageContainer />}></Route>
           <Route path='FeedPage' element={<FeedPage />}></Route>
           <Route path='NetworkPageContainer/*' element={<NetworkPage />}></Route>
           <Route path='JobsPage' element={<JobsPage />}></Route>

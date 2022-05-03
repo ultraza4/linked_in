@@ -1,20 +1,21 @@
 import React from "react";
 import ProfilePage from "./ProfilePage";
-import { addPost, updateNewPostText } from "../../redux/ProfilePageReducer";
+import { addPost, updateNewPostText, setUserProfile } from "../../redux/ProfilePageReducer";
 import { connect } from "react-redux";
+import * as axios from "axios";
 
 class ProfilePageAPI extends React.Component {
 
     componentDidMount() {
-        this.props.toggleIsFetching(true);
+        // this.props.toggleIsFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(response => {
-           this.props.setUserProfile(response.data)
+            this.props.setUserProfile(response.data)
         })
-     }
+    }
 
     render() {
         return <>
-            <ProfilePage {...this.props}/>
+            <ProfilePage {...this.props} profile={this.props.profile} />
         </>
     }
 }
@@ -25,4 +26,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {addPost, updateNewPostText})(ProfilePageAPI);
+export default connect(mapStateToProps, { addPost, updateNewPostText, setUserProfile })(ProfilePageAPI);

@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./NetworkPage.module.css"
 import userPhoto from "../../assets/images/user.png.png";
+import { Link } from "react-router-dom";
 
 let NetworkPage = (props) => {
 
@@ -19,27 +20,22 @@ let NetworkPage = (props) => {
 
       {
          props.users.map(u => <div key={u.id}>
-            <span>
-               <div>
-                  <img className={s.user_avatar} src={u.photos.small != null ? u.photos.small : userPhoto} />
-               </div>
-               <div>
-                  {u.followed
-                     ? <button onClick={() => {
-                        props.unfollow(u.id)
-                     }}>Unfollow</button>
-                     : <button onClick={() => {
-                        props.follow(u.id)
-                     }}>Follow</button>}
+            <Link to={'/ProfilePageContainer/' + u.id}>
+               <img alt="small profile" className={s.user_avatar} src={u.photos.small != null ? u.photos.small : userPhoto} />
+            </Link>
 
-               </div>
-            </span>
-            <span>
-               <span>
-                  <div>{u.name}</div>
-                  <div>{u.status}</div>
-               </span>
-            </span>
+            <div>
+               {u.followed
+                  ? <button onClick={() => {
+                     props.unfollow(u.id)
+                  }}>Unfollow</button>
+                  : <button onClick={() => {
+                     props.follow(u.id)
+                  }}>Follow</button>}
+            </div>
+
+            <div>{u.name}</div>
+            <div>{u.status}</div>
          </div>)
       }
    </div>
