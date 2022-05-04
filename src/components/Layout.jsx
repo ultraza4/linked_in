@@ -1,12 +1,12 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import './../App.css';
-import Header from "./Header/Header";
+import HeaderContainer from "./Header/HeaderContainer";
 
 const Layout = () => {
    return (
       <>
-         <Header />
+         <HeaderContainer />
          <main className="container">
             <Outlet />
          </main>

@@ -9,6 +9,7 @@ import JobsPage from './components/JobsPage/JobsPage';
 import ChatPageContainer from './components/ChatPage/ChatPageContainer';
 import NoticesPage from './components/NoticesPage/NoticesPage';
 import ProfilePageContainer from './components/ProfilePage/ProfilePageContainer';
+import LoginPage from './components/LoginPage/LoginPage'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='JobsPage' element={<JobsPage />} />
           <Route path='ChatPageContainer' element={<ChatPageContainer />} />
           <Route path='NoticesPage' element={<NoticesPage />} />
+          <Route path='login' element={<LoginPage />} />
         </Route>
       </Routes>
 
