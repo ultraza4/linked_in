@@ -3,7 +3,7 @@ import s from './Header.module.css';
 import Navbar from "./Navbar";
 import logo from "./../../assets/images/logo.png";
 import { NavLink } from "react-router-dom";
-const Header = () => {
+const Header = (props) => {
    return (
       <header>
          <div className={s.header_logo}>
@@ -11,7 +11,7 @@ const Header = () => {
          </div>
          <Navbar />
          <div className={s.header_login}>
-            <NavLink to={'/login'}>Login</NavLink >
+            {props.isAuth ? props.login : <NavLink to={'/login'}>Login</NavLink >}
          </div>
       </header>
    )
