@@ -3,21 +3,20 @@ import ProfilePage from "./ProfilePage";
 import { addPost, updateNewPostText, setUserProfile } from "../../redux/ProfilePageReducer";
 import { connect } from "react-redux";
 import * as axios from "axios";
+import { useParams } from "react-router-dom";
 
-class ProfilePageAPI extends React.Component {
+const ProfilePageAPI = (props) => {
+    let { userId } = useParams();
 
-    componentDidMount() {
-        // this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(response => {
-            this.props.setUserProfile(response.data)
+    if (props.ProfilePage.profile === null || props.ProfilePage.profile.userId != userId) {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId).then(response => {
+            props.setUserProfile(response.data)
         })
     }
 
-    render() {
-        return <>
-            <ProfilePage {...this.props} profile={this.props.profile} />
-        </>
-    }
+    return <>
+        <ProfilePage {...props} profile={props.profile} />
+    </>
 }
 
 const mapStateToProps = (state) => {
