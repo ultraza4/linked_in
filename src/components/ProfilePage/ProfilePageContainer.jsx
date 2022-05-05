@@ -7,8 +7,8 @@ import { useParams } from "react-router-dom";
 
 const ProfilePageAPI = (props) => {
     let { userId } = useParams();
-    
-    if (props.ProfilePage.profile === null || props.ProfilePage.profile.userId !== userId) {
+
+    if (props.ProfilePage.profile === null || props.ProfilePage.profile.userId != userId) {
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId).then(response => {
             props.setUserProfile(response.data)
         })
