@@ -1,26 +1,28 @@
 import React from "react";
 import { connect } from "react-redux";
 import { follow, unfollow, setUsers, setActivePage, setTotalUsersCount, toggleIsFetching } from "./../../redux/NetworkPageReducer"
-import * as axios from "axios";
 import NetworkPage from "./NetworkPage";
 import preLoader from "./../../assets/images/spinner.svg"
-
+import usersAPI from "../../redux/api"
 class NetworkPageAPI extends React.Component {
 
    componentDidMount() {
       this.props.toggleIsFetching(true);
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.activePageNumber}&count=${this.props.pageSize}`, { withCredentials: true }).then(response => {
+
+      usersAPI.getUsers(this.props.activePageNumber, this.props.pageSize).then(data => {
          this.props.toggleIsFetching(false);
-         this.props.setUsers(response.data.items);
-         this.props.setTotalUsersCount(response.data.totalCount);
+         this.props.setUsers(data.items);
+         this.props.setTotalUsersCount(data.totalCount);
       })
    }
+
    onPageChanged = (pageNumber) => {
       this.props.setActivePage(pageNumber);
       this.props.toggleIsFetching(true);
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, { withCredentials: true }).then(response => {
+   
+      usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
          this.props.toggleIsFetching(false);
-         this.props.setUsers(response.data.items);
+         this.props.setUsers(data.items);
       })
    }
 
