@@ -4,13 +4,16 @@ const SET_USERS = 'SET_USERS'
 const SET_ACTIVE_PAGE = 'SET_ACTIVE_PAGE'
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
+const TOGGLE_IS_FOLLOWING = 'TOGGLE_IS_FOLLOWING'
+
 let initState = {
    users: [
    ],
    pageSize: 5,
    totalUsersCount: 0,
    activePageNumber: 1,
-   isFetching: true,
+   isFollowing: false,
+   followingInProgress: []
 }
 
 const NetworkPageReducer = (state = initState, action) => {
@@ -59,6 +62,13 @@ const NetworkPageReducer = (state = initState, action) => {
          return {
             ...state, isFetching: action.isFetching
          }
+      case TOGGLE_IS_FOLLOWING:
+         return {
+            ...state, followingInProgress: 
+            action.isFollowing 
+            ? [...state.followingInProgress, action.userId]
+            : state.followingInProgress.filter(id => id != action.userId)
+         }
 
       default:
          return state;
@@ -73,5 +83,6 @@ export const setUsers = (users) => ({ type: SET_USERS, users })
 export const setActivePage = (currentPage) => ({ type: SET_ACTIVE_PAGE, currentPage })
 export const setTotalUsersCount = (count) => ({ type: SET_TOTAL_USERS_COUNT, count })
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
+export const toggleIsFollowing = (isFollowing, userId) => ({ type: TOGGLE_IS_FOLLOWING, isFollowing, userId})
 
 export default NetworkPageReducer;

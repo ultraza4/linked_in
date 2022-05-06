@@ -1,6 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { follow, unfollow, setUsers, setActivePage, setTotalUsersCount, toggleIsFetching } from "./../../redux/NetworkPageReducer"
+import { 
+         follow, unfollow, setUsers, 
+         setActivePage, setTotalUsersCount, 
+         toggleIsFollowing, toggleIsFetching, 
+      } from "./../../redux/NetworkPageReducer"
 import NetworkPage from "./NetworkPage";
 import preLoader from "./../../assets/images/spinner.svg"
 import usersAPI from "../../redux/api"
@@ -36,6 +40,9 @@ class NetworkPageAPI extends React.Component {
             onPageChanged={this.onPageChanged}
             follow={this.props.follow}
             unfollow={this.props.unfollow}
+            isFollowing = {this.props.isFollowing}
+            toggleIsFollowing = {this.props.toggleIsFollowing}
+            followingInProgress = {this.props.followingInProgress}
          />
       </>
    }
@@ -47,7 +54,9 @@ const mapStateToProps = (state) => {
       pageSize: state.NetworkPage.pageSize,
       totalUsersCount: state.NetworkPage.totalUsersCount,
       activePageNumber: state.NetworkPage.activePageNumber,
-      isFetching: state.NetworkPage.isFetching
+      isFetching: state.NetworkPage.isFetching,
+      isFollowing: state.NetworkPage.isFollowing,
+      followingInProgress: state.NetworkPage.followingInProgress
    }
 }
 
@@ -71,6 +80,7 @@ export default connect(mapStateToProps, {
    setActivePage,
    setTotalUsersCount,
    toggleIsFetching,
+   toggleIsFollowing,
 })(NetworkPageAPI);
 
 
