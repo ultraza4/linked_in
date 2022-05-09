@@ -1,48 +1,37 @@
 import React from "react";
 import { connect } from "react-redux";
 import { 
-         follow, unfollow, setUsers, 
-         setActivePage, setTotalUsersCount, 
-         toggleIsFollowing, toggleIsFetching, 
+         follow, unfollow, 
+         setActivePage, toggleIsFollowing,
+         getUsersThunkCreator,followThunkCreator,
+         unfollowThunkCreator
       } from "./../../redux/NetworkPageReducer"
 import NetworkPage from "./NetworkPage";
 import preLoader from "./../../assets/images/spinner.svg"
-import usersAPI from "../../redux/api"
+
 class NetworkPageAPI extends React.Component {
 
    componentDidMount() {
-      this.props.toggleIsFetching(true);
-
-      usersAPI.getUsers(this.props.activePageNumber, this.props.pageSize).then(data => {
-         this.props.toggleIsFetching(false);
-         this.props.setUsers(data.items);
-         this.props.setTotalUsersCount(data.totalCount);
-      })
+      this.props.getUsersThunkCreator(this.props.activePageNumber, this.props.pageSize);
    }
 
    onPageChanged = (pageNumber) => {
-      this.props.setActivePage(pageNumber);
-      this.props.toggleIsFetching(true);
-   
-      usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-         this.props.toggleIsFetching(false);
-         this.props.setUsers(data.items);
-      })
+      this.props.getUsersThunkCreator(pageNumber, this.props.pageSize);
    }
 
    render() {
       return <>
          {this.props.isFetching ? <img src={preLoader} /> : null}
+         
          <NetworkPage activePageNumber={this.props.activePageNumber}
             totalUsersCount={this.props.totalUsersCount}
             pageSize={this.props.pageSize}
             users={this.props.users}
             onPageChanged={this.onPageChanged}
-            follow={this.props.follow}
-            unfollow={this.props.unfollow}
             isFollowing = {this.props.isFollowing}
-            toggleIsFollowing = {this.props.toggleIsFollowing}
             followingInProgress = {this.props.followingInProgress}
+            followThunkCreator= {this.props.followThunkCreator}
+            unfollowThunkCreator = {this.props.unfollowThunkCreator}
          />
       </>
    }
@@ -76,11 +65,10 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
    follow,
    unfollow,
-   setUsers,
    setActivePage,
-   setTotalUsersCount,
-   toggleIsFetching,
-   toggleIsFollowing,
+   getUsersThunkCreator,
+   followThunkCreator,
+   unfollowThunkCreator
 })(NetworkPageAPI);
 
 
