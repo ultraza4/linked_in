@@ -2,7 +2,6 @@ import React from "react";
 import s from "./NetworkPage.module.css"
 import userPhoto from "../../assets/images/user.png.png";
 import { Link } from "react-router-dom";
-import usersAPI from "../../redux/api"
 
 let NetworkPage = (props) => {
 
@@ -29,25 +28,9 @@ let NetworkPage = (props) => {
                {u.followed
                   ? <button disabled={props.followingInProgress.some( id => id === u.id)} onClick={() => {
                      props.followThunkCreator(u.id);
-                     // props.toggleIsFollowing(true, u.id)
-                     // usersAPI.unfollowUser(u.id)
-                     //    .then(data => {
-                     //       if (data.resultCode === 0) {
-                     //          props.unfollow(u.id)
-                     //       }
-                     //       props.toggleIsFollowing(false, u.id)
-                     //    })
                   }}>Unfollow</button>
                   : <button disabled = {props.followingInProgress.some( id => id === u.id )} onClick={() => {
                      props.unfollowThunkCreator(u.id);
-                     // props.toggleIsFollowing(true, u.id)
-                     // usersAPI.followUser(u.id)
-                     //    .then(data => {
-                     //       if (data.resultCode === 0) {
-                     //          props.follow(u.id)
-                     //       }
-                     //       props.toggleIsFollowing(false, u.id)
-                     //    })
                   }}>Follow</button>}
             </div>
 

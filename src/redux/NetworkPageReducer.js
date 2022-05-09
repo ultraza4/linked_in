@@ -1,4 +1,4 @@
-import usersAPI from "../redux/api"
+import { usersAPI } from "../redux/api"
 
 const FOLLOW = "FOLLOW"
 const UNFOLLOW = 'UNFOLLOW'
