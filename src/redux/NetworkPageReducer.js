@@ -87,7 +87,7 @@ export const setTotalUsersCount = (count) => ({ type: SET_TOTAL_USERS_COUNT, cou
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
 export const toggleIsFollowing = (isFollowing, userId) => ({ type: TOGGLE_IS_FOLLOWING, isFollowing, userId })
 
-export const getUsersThunkCreator = (activePageNumber, pageSize) => {
+export const getUsersThunk = (activePageNumber, pageSize) => {
    return (dispatch) => {
       dispatch(toggleIsFetching(true));
 
@@ -99,7 +99,7 @@ export const getUsersThunkCreator = (activePageNumber, pageSize) => {
       })
    }
 }
-export const followThunkCreator = (userId) => {
+export const followThunk = (userId) => {
    return (dispatch) => {
 
       dispatch(toggleIsFollowing(true, userId));
@@ -113,7 +113,7 @@ export const followThunkCreator = (userId) => {
    }
 }
 
-export const unfollowThunkCreator = (userId) => {
+export const unfollowThunk = (userId) => {
    return (dispatch) => {
       dispatch(toggleIsFollowing(true, userId));
       usersAPI.followUser(userId)

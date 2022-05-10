@@ -3,7 +3,7 @@ import ProfilePageReducer from './ProfilePageReducer';
 import ChatPageReducer from './ChatPageReducer';
 import NetworkPageReducer from './NetworkPageReducer';
 import authReducer from './authReducer';
-import thunkMiddleware from 'redux-thunk'
+import thunkMiddleware from 'redux-thunk';
 
 let rootReducer = combineReducers({
    ProfilePage: ProfilePageReducer,

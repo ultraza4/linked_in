@@ -3,6 +3,7 @@ import ProfilePage from "./ProfilePage";
 import { addPost, updateNewPostText, getProfileThunk } from "../../redux/ProfilePageReducer";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 const ProfilePageAPI = (props) => {
     let { userId } = useParams();
@@ -22,4 +23,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { addPost, updateNewPostText, getProfileThunk })(ProfilePageAPI);
+export default withAuthRedirect(connect(mapStateToProps, { addPost, updateNewPostText, getProfileThunk })(ProfilePageAPI));
