@@ -1,5 +1,6 @@
 import PostsItem from "./PostsItem";
-import s from "./ProfilePage.module.css"
+import s from "./ProfilePage.module.css";
+import ProfileStatus from "./ProfileStatus";
 
 const ProfilePage = (props) => {
     if (!props.ProfilePage.profile) {
@@ -22,6 +23,7 @@ const ProfilePage = (props) => {
                 <img src={props.ProfilePage.profile.photos.large} alt="profile large" />
                 <div className={s.name}>{props.ProfilePage.profile.fullName}</div>
                 <div className={s.status}>{props.ProfilePage.profile.lookingForAJobDescription}</div>
+                <ProfileStatus {...props} userId={props.userId} status = "Hello my dear friends"/>
             </div>
             <div className={s.Dashboard}>Dashboard</div>
             <div className={s.AddPost}>

@@ -3,6 +3,7 @@ import { profileAPI } from '../redux/api'
 const ADD_POST = "ADD-POST"
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
+const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS'
 
 let initState = {
    posts: [
@@ -11,7 +12,8 @@ let initState = {
       { id: 3, message: 'Lorem ipsum dip set amet helosdj jooekjsaoo nlxoado' },
    ],
    newPostText: "itkamasutra.com",
-   profile: null
+   profile: null,
+   userStatus: null
 }
 
 const ProfilePageReducer = (state = initState, action) => {
@@ -28,7 +30,9 @@ const ProfilePageReducer = (state = initState, action) => {
       case UPDATE_NEW_POST_TEXT:
          return { ...state, newPostText: action.newText };
       case SET_USER_PROFILE:
-         return { ...state, profile: action.profile }
+         return { ...state, profile: action.profile };
+      case SET_PROFILE_STATUS:
+         return {...state, userStatus: action.userStatus};
       default:
          return state;
 
@@ -40,11 +44,20 @@ const ProfilePageReducer = (state = initState, action) => {
 export const addPost = () => ({ type: ADD_POST })
 export const updateNewPostText = (newText) => ({ type: UPDATE_NEW_POST_TEXT, newText })
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
+export const setProfileStatus = (userStatus) =>({type: SET_PROFILE_STATUS, userStatus})
 export const getProfileThunk =(userId) => {
    return (dispatch) => {
       profileAPI.getProfile(userId)
       .then(data => {
             dispatch(setUserProfile(data));
+        })
+   }
+}
+export const setProfileStatusThunk =(userId) => {
+   return (dispatch) => {
+      profileAPI.getProfileStatus(userId)
+      .then(response => {
+            dispatch(setProfileStatus(response.data));
         })
    }
 }
