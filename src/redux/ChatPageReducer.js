@@ -32,8 +32,8 @@ const ChatPageReducer = (state = initState, action) => {
    }
 }
 
-export const sendMessageActionCreator = () => ({ type: SEND_MESSAGE })
-export const updateNewMessageTextActionCreator = (text) => {
+export const sendMessage = () => ({ type: SEND_MESSAGE })
+export const updateNewMessageText = (text) => {
    return { type: UPDATE_NEW_MESSAGE_TEXT, newMessage: text }
 }
 

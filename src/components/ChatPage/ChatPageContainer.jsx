@@ -1,6 +1,21 @@
+import React from "react";
 import { connect } from "react-redux";
-import { sendMessageActionCreator, updateNewMessageTextActionCreator } from "../../redux/ChatPageReducer"
+import { compose } from "redux";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { sendMessage, updateNewMessageText } from "../../redux/ChatPageReducer"
 import ChatPage from "./ChatPage"
+
+class ChatPageAPI extends React.Component{
+
+    render() {
+        return <>
+            <ChatPage ChatPage = {this.props.ChatPage}
+                      onUpdateNewMessageText = {this.props.updateNewMessageText} 
+                      onSendMessage = {this.props.sendMessage}
+                    />
+        </>
+    }
+}
 
 const mapStateToProps = (state) => {
     return {
@@ -8,13 +23,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onSendMessage: () => { dispatch(sendMessageActionCreator()) },
-        onUpdateNewMessageText: (text) => { dispatch(updateNewMessageTextActionCreator(text)) }
-    }
-}
-
-const ChatPageContainer = connect(mapStateToProps, mapDispatchToProps)(ChatPage);
-
-export default ChatPageContainer;
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps, { sendMessage, updateNewMessageText })
+)(ChatPageAPI)
