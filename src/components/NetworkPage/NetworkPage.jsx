@@ -2,6 +2,7 @@ import React from "react";
 import s from "./NetworkPage.module.css"
 import userPhoto from "../../assets/images/user.png.png";
 import { Link } from "react-router-dom";
+import { Pagination } from "@mui/material";
 
 let NetworkPage = (props) => {
 
@@ -13,11 +14,17 @@ let NetworkPage = (props) => {
    }
 
    return <div>
+      {/* Old pagination
       {pages.map(p => {
          return <span className={props.activePageNumber === p && s.activePage}
             onClick={(e) => props.onPageChanged(p)}> {p} </span>
-      })}
+      })} */}
 
+      <Pagination
+         count={pagesCount}
+         page={props.activePageNumber}
+         onChange={(_, num) => props.onPageChanged(num)}
+      />
       {
          props.users.map(u => <div key={u.id}>
             <Link to={'/ProfilePageContainer/' + u.id}>
@@ -26,10 +33,10 @@ let NetworkPage = (props) => {
 
             <div>
                {u.followed
-                  ? <button disabled={props.followingInProgress.some( id => id === u.id)} onClick={() => {
+                  ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                      props.followThunkCreator(u.id);
                   }}>Unfollow</button>
-                  : <button disabled = {props.followingInProgress.some( id => id === u.id )} onClick={() => {
+                  : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                      props.unfollowThunkCreator(u.id);
                   }}>Follow</button>}
             </div>
