@@ -7,7 +7,17 @@ class ProfileStatus extends React.Component {
         status: this.props.ProfilePage.userStatus
     }
     componentDidMount() {
-        this.props.setProfileStatusThunk(this.props.userId)
+        this.props.setProfileStatusThunk(this.props.userId);
+        // this.setState({
+        //     status: this.props.ProfilePage.userStatus
+        // });
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if(prevProps.ProfilePage.userStatus !== this.props.ProfilePage.userStatus) {
+            this.setState({
+                status: this.props.ProfilePage.userStatus
+            });
+        }
     } 
     activateEditMode() {
         this.setState({
