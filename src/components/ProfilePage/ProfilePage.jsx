@@ -23,7 +23,7 @@ const ProfilePage = (props) => {
                 <img src={props.ProfilePage.profile.photos.large} alt="profile large" />
                 <div className={s.name}>{props.ProfilePage.profile.fullName}</div>
                 <div className={s.status}>{props.ProfilePage.profile.lookingForAJobDescription}</div>
-                <ProfileStatus {...props} userId={props.userId} status = "Hello my dear friends"/>
+                <ProfileStatus {...props} userId={props.userId} />
             </div>
             <div className={s.Dashboard}>Dashboard</div>
             <div className={s.AddPost}>

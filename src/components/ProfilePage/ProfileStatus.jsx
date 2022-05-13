@@ -2,15 +2,13 @@ import React from "react";
 import s from "./ProfilePage.module.css";
 
 class ProfileStatus extends React.Component {
-
-    componentDidMount() {
-        this.props.setProfileStatusThunk(this.props.userId)
-    }
-
     state = {
         editMode: false,
+        status: this.props.ProfilePage.userStatus
     }
-
+    componentDidMount() {
+        this.props.setProfileStatusThunk(this.props.userId)
+    } 
     activateEditMode() {
         this.setState({
             editMode: true
@@ -20,7 +18,14 @@ class ProfileStatus extends React.Component {
     deActivateEditMode() {
         this.setState({
             editMode: false
-        })
+        });
+        this.props.updateStatusThunk(this.state.status);
+    }
+
+    onStatusChange(e) {
+        this.setState({
+            status: e.currentTarget.value
+        });
     }
 
     render() {
@@ -35,9 +40,10 @@ class ProfileStatus extends React.Component {
                 }
                 {this.state.editMode &&
                     <div>
-                        <input autoFocus={true} 
+                        <input autoFocus={true}
                         onBlur={this.deActivateEditMode.bind(this)} 
-                        value={this.props.ProfilePage.userStatus}></input>
+                        onChange={this.onStatusChange.bind(this)}
+                        value={this.state.status}></input>
                     </div>
                 }
             </>

@@ -13,7 +13,7 @@ let initState = {
    ],
    newPostText: "itkamasutra.com",
    profile: null,
-   userStatus: null
+   userStatus: ""
 }
 
 const ProfilePageReducer = (state = initState, action) => {
@@ -32,7 +32,7 @@ const ProfilePageReducer = (state = initState, action) => {
       case SET_USER_PROFILE:
          return { ...state, profile: action.profile };
       case SET_PROFILE_STATUS:
-         return {...state, userStatus: action.userStatus};
+         return { ...state, userStatus: action.userStatus };
       default:
          return state;
 
@@ -44,21 +44,31 @@ const ProfilePageReducer = (state = initState, action) => {
 export const addPost = () => ({ type: ADD_POST })
 export const updateNewPostText = (newText) => ({ type: UPDATE_NEW_POST_TEXT, newText })
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
-export const setProfileStatus = (userStatus) =>({type: SET_PROFILE_STATUS, userStatus})
-export const getProfileThunk =(userId) => {
+export const setProfileStatus = (userStatus) => ({ type: SET_PROFILE_STATUS, userStatus })
+export const getProfileThunk = (userId) => {
    return (dispatch) => {
       profileAPI.getProfile(userId)
-      .then(data => {
+         .then(data => {
             dispatch(setUserProfile(data));
-        })
+         })
    }
 }
-export const setProfileStatusThunk =(userId) => {
+export const setProfileStatusThunk = (userId) => {
    return (dispatch) => {
       profileAPI.getProfileStatus(userId)
-      .then(response => {
+         .then(response => {
             dispatch(setProfileStatus(response.data));
-        })
+         })
+   }
+}
+export const updateStatusThunk = (status) => {
+   return (dispatch) => {
+      profileAPI.updateStatus(status)
+         .then(response => {
+            if (response.data.resultCode == 0) {
+               dispatch(setProfileStatus(status))
+            }
+         })
    }
 }
 export default ProfilePageReducer;

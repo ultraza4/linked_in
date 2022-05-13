@@ -89,7 +89,7 @@ export const toggleIsFollowing = (isFollowing, userId) => ({ type: TOGGLE_IS_FOL
 
 export const getUsersThunk = (activePageNumber, pageSize) => {
    return (dispatch) => {
-      dispatch(toggleIsFetching(true));
+      // dispatch(toggleIsFetching(true));
 
       usersAPI.getUsers(activePageNumber, pageSize).then(data => {
          dispatch(toggleIsFetching(false))
