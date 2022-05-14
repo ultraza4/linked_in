@@ -1,6 +1,6 @@
 import React from "react";
 import ProfilePage from "./ProfilePage";
-import { addPost, updateNewPostText, getProfileThunk, setProfileStatusThunk, updateStatusThunk } from "../../redux/ProfilePageReducer";
+import { addPost, getProfileThunk, setProfileStatusThunk, updateStatusThunk } from "../../redux/ProfilePageReducer";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
@@ -27,7 +27,7 @@ const mapStateToProps = (state) => {
 export default compose(
     // withAuthRedirect,
     connect(mapStateToProps, {
-        addPost, updateNewPostText, getProfileThunk,
+        addPost, getProfileThunk,
         setProfileStatusThunk, updateStatusThunk
     })
 )(ProfilePageAPI)

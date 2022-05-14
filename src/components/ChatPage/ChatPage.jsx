@@ -2,17 +2,15 @@ import React from "react"
 import ChatItem from './ChatItem/ChatItem'
 import ChatMessage from './ChatMessage/ChatMessage'
 import s from './ChatPage.module.css'
+import { Form, Field } from 'react-final-form'
 
 const ChatPage = (props) => {
-    let ChatItems = props.ChatPage.dialogs.map(d => <ChatItem key = {d.id} name={d.name} id={d.id} />)
-    let ChatMessages = props.ChatPage.messages.map(m => <ChatMessage key = {m.id} message={m.message} id={m.id} />)
+    let ChatItems = props.ChatPage.dialogs.map(d => <ChatItem key={d.id} name={d.name} id={d.id} />)
+    let ChatMessages = props.ChatPage.messages.map(m => <ChatMessage key={m.id} message={m.message} id={m.id} />)
 
-    let SendMessage = () => {
-        props.onSendMessage();
-    }
-    let updateNewMessageText = (event) => {
-        let text = event.target.value;
-        props.onUpdateNewMessageText(text);
+    let SendMessage = (value) => {
+        props.onSendMessage(value.newMessageText);
+        console.log(value.newMessageText)
     }
 
     return (
@@ -22,9 +20,15 @@ const ChatPage = (props) => {
             </div>
             <div className={s.messages}>
                 {ChatMessages}
-                <textarea className={s.ChatPage__textarea}
-                    onChange={updateNewMessageText} value={props.ChatPage.newMessageText} name="post" id="" cols="30" rows="2" />
-                <button className={s.btn} onClick={SendMessage}>Add Post</button>
+                <Form
+                    onSubmit={SendMessage}
+                    render = {({ handleSubmit }) => (
+                        <form onSubmit={handleSubmit}>
+                            <Field name="newMessageText" component="textarea" placeholder="Enter your message" />
+                            <button type="submit">Send</button>
+                        </form>
+                    )}
+                />
             </div>
         </div>
     )

@@ -11,7 +11,6 @@ let initState = {
       { id: 2, message: 'Heres example of the way to achive your goals' },
       { id: 3, message: 'Lorem ipsum dip set amet helosdj jooekjsaoo nlxoado' },
    ],
-   newPostText: "itkamasutra.com",
    profile: null,
    userStatus: ""
 }
@@ -23,12 +22,8 @@ const ProfilePageReducer = (state = initState, action) => {
       case ADD_POST:
          return {
             ...state,
-            newPostText: "",
-            posts: [...state.posts, { id: 4, message: state.newPostText }]
+            posts: [...state.posts, { id: 4, message: action.newPostText }]
          };
-
-      case UPDATE_NEW_POST_TEXT:
-         return { ...state, newPostText: action.newText };
       case SET_USER_PROFILE:
          return { ...state, profile: action.profile };
       case SET_PROFILE_STATUS:
@@ -41,8 +36,7 @@ const ProfilePageReducer = (state = initState, action) => {
 
 }
 
-export const addPost = () => ({ type: ADD_POST })
-export const updateNewPostText = (newText) => ({ type: UPDATE_NEW_POST_TEXT, newText })
+export const addPost = (newPostText) => ({ type: ADD_POST, newPostText})
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 export const setProfileStatus = (userStatus) => ({ type: SET_PROFILE_STATUS, userStatus })
 export const getProfileThunk = (userId) => {

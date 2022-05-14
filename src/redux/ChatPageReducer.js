@@ -1,5 +1,4 @@
 const SEND_MESSAGE = "SEND-MESSAGE"
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT"
 
 let initState = {
    dialogs: [
@@ -13,28 +12,19 @@ let initState = {
       { id: 2, message: 'Azamat' },
       { id: 3, message: 'Mirza' },
    ],
-   newMessageText: "ITS A NEW MESSAGE HERE"
 }
 
 const ChatPageReducer = (state = initState, action) => {
    switch (action.type) {
       case SEND_MESSAGE: 
          return { ...state, 
-            messages: [...state.messages, {id: 5, message: state.newMessageText}],
-            newMessageText: ""
+            messages: [...state.messages, {id: 5, message: action.newMessageText}]
          };
-      
-      case UPDATE_NEW_MESSAGE_TEXT:
-         return  { ...state, newMessageText: action.newMessage };
-      
       default:
          return state;
    }
 }
 
-export const sendMessage = () => ({ type: SEND_MESSAGE })
-export const updateNewMessageText = (text) => {
-   return { type: UPDATE_NEW_MESSAGE_TEXT, newMessage: text }
-}
+export const sendMessage = (newMessageText) => ({ type: SEND_MESSAGE, newMessageText})
 
 export default ChatPageReducer;
