@@ -9,7 +9,7 @@ import { compose } from "redux";
 const ProfilePageAPI = (props) => {
     let { userId } = useParams();
 
-    if (props.ProfilePage.profile === null || props.ProfilePage.profile.userId != userId) {
+    if (props.ProfilePage.profile === null || parseInt(props.ProfilePage.profile.userId) !== parseInt(userId)) {
         props.getProfileThunk(userId);
     }
 
@@ -25,7 +25,7 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-    // withAuthRedirect,
+    withAuthRedirect,
     connect(mapStateToProps, {
         addPost, getProfileThunk,
         setProfileStatusThunk, updateStatusThunk

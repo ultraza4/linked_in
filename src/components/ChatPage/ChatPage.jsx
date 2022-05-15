@@ -3,6 +3,8 @@ import ChatItem from './ChatItem/ChatItem'
 import ChatMessage from './ChatMessage/ChatMessage'
 import s from './ChatPage.module.css'
 import { Form, Field } from 'react-final-form'
+import { TextareaField } from "../../common/TextareaField"
+import { maxLenghtCreator, requiredField } from "../../common/validators";
 
 const ChatPage = (props) => {
     let ChatItems = props.ChatPage.dialogs.map(d => <ChatItem key={d.id} name={d.name} id={d.id} />)
@@ -10,8 +12,9 @@ const ChatPage = (props) => {
 
     let SendMessage = (value) => {
         props.onSendMessage(value.newMessageText);
-        console.log(value.newMessageText)
     }
+    const composeValidators = (...validators) => value =>
+        validators.reduce((error, validator) => error || validator(value), undefined)
 
     return (
         <div className={s.ChatPage}>
@@ -22,10 +25,13 @@ const ChatPage = (props) => {
                 {ChatMessages}
                 <Form
                     onSubmit={SendMessage}
-                    render = {({ handleSubmit }) => (
+                    render={({ handleSubmit }) => (
                         <form onSubmit={handleSubmit}>
-                            <Field name="newMessageText" component="textarea" placeholder="Enter your message" />
-                            <button type="submit">Send</button>
+                            <Field name="newMessageText"
+                                component={TextareaField} placeholder="Enter your message"
+                                validate={composeValidators(requiredField, maxLenghtCreator(20))}
+                                buttonName="Send Message" />
+
                         </form>
                     )}
                 />
