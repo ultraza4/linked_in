@@ -1,5 +1,5 @@
 import { Form, Field } from "react-final-form";
-import { TextareaField } from "../../common/TextareaField";
+import { Textarea } from "../../common/FormControl";
 import { maxLenghtCreator, requiredField } from "../../common/validators";
 import PostsItem from "./PostsItem";
 import s from "./ProfilePage.module.css";
@@ -36,9 +36,12 @@ const ProfilePage = (props) => {
                         <form onSubmit={handleSubmit}>
                             <Field
                                 name="newPostText"
-                                component={TextareaField}
+                                component={Textarea}
                                 validate={composeValidators(requiredField, maxLenghtCreator(10))}
-                                buttonName="Add Post" />
+                            />
+                            <div>
+                                <button>Add Post</button>
+                            </div>
                         </form>
                     )}
                 />

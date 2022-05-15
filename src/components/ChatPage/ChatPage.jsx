@@ -3,7 +3,7 @@ import ChatItem from './ChatItem/ChatItem'
 import ChatMessage from './ChatMessage/ChatMessage'
 import s from './ChatPage.module.css'
 import { Form, Field } from 'react-final-form'
-import { TextareaField } from "../../common/TextareaField"
+import { Textarea } from "../../common/FormControl"
 import { maxLenghtCreator, requiredField } from "../../common/validators";
 
 const ChatPage = (props) => {
@@ -28,10 +28,12 @@ const ChatPage = (props) => {
                     render={({ handleSubmit }) => (
                         <form onSubmit={handleSubmit}>
                             <Field name="newMessageText"
-                                component={TextareaField} placeholder="Enter your message"
+                                component={Textarea} placeholder="Enter your message"
                                 validate={composeValidators(requiredField, maxLenghtCreator(20))}
-                                buttonName="Send Message" />
-
+                            />
+                            <div>
+                                <button>Send Message</button>
+                            </div>
                         </form>
                     )}
                 />
