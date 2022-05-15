@@ -1,39 +1,43 @@
 import React from "react";
 import { Form, Field } from 'react-final-form'
+import { connect } from "react-redux";
 import { Input } from "../../common/FormControl";
 import { requiredField } from "../../common/validators";
+import { login } from "../../redux/authReducer";
 
-const onSubmit = (data) => {
-   console.log(data)
-}
-
-export const LoginForm = (props) => (
+const LoginForm = (props) => (
    <Form
-      onSubmit={onSubmit}
+      onSubmit={props.onSubmit}
       render={({ handleSubmit }) => (
          <form onSubmit={handleSubmit}>
             <h2>Simple Default Input</h2>
             <div>
                <div>Login</div>
-               <Field name="login" validate={requiredField} component={Input} placeholder="Enter login" />
+               <Field name="email" validate={requiredField} component={Input} placeholder="Enter email" />
             </div>
             <div>
                <div>Password</div>
                <Field name="password" validate={requiredField} component={Input} type="password" placeholder="Enter password" />
             </div>
-            <button type="submit">Submit</button>
+            <div>
+               <Field name="rememberMe" component={Input} type={"checkbox"} /> Remember Me
+            </div>
+            <button type="submit">Log In</button>
          </form>
       )}
    />
 )
 
+const LoginPage = (props) => {
+   let onSubmit = (data) => {
+      props.login(data.email, data.password, data.rememberMe)
+   }
 
-const LoginPage = () => {
    return (<>
       <h1>Login Page</h1>
-      <LoginForm />
+      <LoginForm onSubmit={onSubmit} />
    </>
    )
 }
 
-export default LoginPage;
+export default connect(null, { login })(LoginPage);
