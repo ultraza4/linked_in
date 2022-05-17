@@ -37,7 +37,7 @@ export const authMeThunkCreator = () => (dispatch) => {
 export const login = (email, password, rememberMe) => (dispatch) => {
    authAPI.login(email, password, rememberMe)
       .then(response => {
-         if (response.resultCode === 0) {
+         if (response.data.resultCode === 0) {
             dispatch(authMeThunkCreator())
          }
       })
@@ -46,7 +46,7 @@ export const login = (email, password, rememberMe) => (dispatch) => {
 export const logout = () => (dispatch) => {
    authAPI.logout()
       .then(response => {
-         if (response.resultCode === 0) {
+         if (response.data.resultCode === 0) {
             dispatch(setUserData(null, null, null, false));
          }
       })

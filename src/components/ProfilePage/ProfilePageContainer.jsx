@@ -8,7 +8,9 @@ import { compose } from "redux";
 
 const ProfilePageAPI = (props) => {
     let { userId } = useParams();
-
+    if(!userId) {
+        userId = 2;
+    }
     if (props.ProfilePage.profile === null || parseInt(props.ProfilePage.profile.userId) !== parseInt(userId)) {
         props.getProfileThunk(userId);
     }

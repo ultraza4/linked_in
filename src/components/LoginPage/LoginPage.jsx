@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Field } from 'react-final-form'
 import { connect } from "react-redux";
+import { Navigate } from "react-router-dom";
 import { Input } from "../../common/FormControl";
 import { requiredField } from "../../common/validators";
 import { login } from "../../redux/authReducer";
@@ -33,6 +34,10 @@ const LoginPage = (props) => {
       props.login(data.email, data.password, data.rememberMe)
    }
 
+   if(props.isAuth) {
+     return <Navigate to={'/ProfilePageContainer'} />  
+   }
+
    return (<>
       <h1>Login Page</h1>
       <LoginForm onSubmit={onSubmit} />
@@ -40,4 +45,8 @@ const LoginPage = (props) => {
    )
 }
 
-export default connect(null, { login })(LoginPage);
+const mapStateToProps = (state) => ({
+   isAuth: state.Auth.isAuth
+})
+
+export default connect(mapStateToProps, { login })(LoginPage);
