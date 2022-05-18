@@ -1,11 +1,13 @@
 import { authAPI } from "../redux/api"
 const SET_USER_DATA = 'SET_USER_DATA'
+const SET_ERROR_MESSAGE ='SET_ERROR_MESSAGE'
 
 let initState = {
    userId: null,
    email: null,
    login: null,
    isAuth: false,
+   errorMessage: "",
 }
 
 const authReducer = (state = initState, action) => {
@@ -16,13 +18,18 @@ const authReducer = (state = initState, action) => {
             ...state,
             ...action.data
          };
-
+      case SET_ERROR_MESSAGE:
+         return {
+            ...state,
+            errorMessage: action.errorMessage
+         }
       default:
          return state;
    }
 }
 
 export const setUserData = (userId, email, login, isAuth) => ({ type: SET_USER_DATA, data: { userId, email, login, isAuth } })
+export const setErrorMessage = (errorMessage) => ({type: SET_ERROR_MESSAGE, errorMessage})
 
 export const authMeThunkCreator = () => (dispatch) => {
    authAPI.authMe()
@@ -39,6 +46,8 @@ export const login = (email, password, rememberMe) => (dispatch) => {
       .then(response => {
          if (response.data.resultCode === 0) {
             dispatch(authMeThunkCreator())
+         }else{
+            dispatch(setErrorMessage(response.data.messages[0]))
          }
       })
 }

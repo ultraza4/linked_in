@@ -9,7 +9,8 @@ import { login } from "../../redux/authReducer";
 const LoginForm = (props) => (
    <Form
       onSubmit={props.onSubmit}
-      render={({ handleSubmit }) => (
+
+      render={({ handleSubmit, invalid }) => (
          <form onSubmit={handleSubmit}>
             <h2>Simple Default Input</h2>
             <div>
@@ -23,7 +24,8 @@ const LoginForm = (props) => (
             <div>
                <Field name="rememberMe" component={Input} type={"checkbox"} /> Remember Me
             </div>
-            <button type="submit">Log In</button>
+            {props.errorMessage.length !== 0 && <div> {props.errorMessage} </div>}
+            <button type="submit" disabled={invalid}>Log In</button>
          </form>
       )}
    />
@@ -40,13 +42,14 @@ const LoginPage = (props) => {
 
    return (<>
       <h1>Login Page</h1>
-      <LoginForm onSubmit={onSubmit} />
+      <LoginForm onSubmit={onSubmit} errorMessage={props.errorMessage}/>
    </>
    )
 }
 
 const mapStateToProps = (state) => ({
-   isAuth: state.Auth.isAuth
+   isAuth: state.Auth.isAuth,
+   errorMessage: state.Auth.errorMessage
 })
 
 export default connect(mapStateToProps, { login })(LoginPage);
