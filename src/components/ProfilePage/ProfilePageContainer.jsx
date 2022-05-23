@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProfilePage from "./ProfilePage";
 import { addPost, getProfileThunk, setProfileStatusThunk, updateStatusThunk } from "../../redux/ProfilePageReducer";
 import { connect } from "react-redux";
@@ -11,10 +11,16 @@ const ProfilePageAPI = (props) => {
     if(!userId) {
         userId = 2;
     }
+    const setProfielStatus = props.setProfileStatusThunk;
+    
+    useEffect(()=>{
+        setProfielStatus(userId);
+    },[setProfielStatus,userId])
+    
     if (props.ProfilePage.profile === null || parseInt(props.ProfilePage.profile.userId) !== parseInt(userId)) {
         props.getProfileThunk(userId);
     }
-
+    
     return <>
         <ProfilePage {...props} userId={userId} />
     </>

@@ -35,33 +35,27 @@ const ProfilePageReducer = (state = initState, action) => {
 
 }
 
-export const addPost = (newPostText) => ({ type: ADD_POST, newPostText})
+export const addPost = (newPostText) => ({ type: ADD_POST, newPostText })
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 export const setProfileStatus = (userStatus) => ({ type: SET_PROFILE_STATUS, userStatus })
 export const getProfileThunk = (userId) => {
-   return (dispatch) => {
-      profileAPI.getProfile(userId)
-         .then(data => {
-            dispatch(setUserProfile(data));
-         })
+   return async (dispatch) => {
+      let data = await profileAPI.getProfile(userId);
+      dispatch(setUserProfile(data));
    }
 }
 export const setProfileStatusThunk = (userId) => {
-   return (dispatch) => {
-      profileAPI.getProfileStatus(userId)
-         .then(response => {
-            dispatch(setProfileStatus(response.data));
-         })
+   return async (dispatch) => {
+      let response = profileAPI.getProfileStatus(userId)
+      dispatch(setProfileStatus(response.data));
    }
 }
 export const updateStatusThunk = (status) => {
-   return (dispatch) => {
-      profileAPI.updateStatus(status)
-         .then(response => {
-            if (response.data.resultCode === 0) {
-               dispatch(setProfileStatus(status))
-            }
-         })
+   return async (dispatch) => {
+      let response = await profileAPI.updateStatus(status)
+      if (response.data.resultCode === 0) {
+         dispatch(setProfileStatus(status))
+      }
    }
 }
 export default ProfilePageReducer;

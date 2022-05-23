@@ -2,11 +2,9 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 
-let mapStateToPropsForRedirect = (state) => {
-   return {
-      isAuth: state.Auth.isAuth,
-   }
-}
+let mapStateToPropsForRedirect = (state) => ({
+   isAuth: state.Auth.isAuth,
+})
 
 export const withAuthRedirect = (Component) => {
 
