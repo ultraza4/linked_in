@@ -46,7 +46,7 @@ export const getProfileThunk = (userId) => {
 }
 export const setProfileStatusThunk = (userId) => {
    return async (dispatch) => {
-      let response = profileAPI.getProfileStatus(userId)
+      let response = await profileAPI.getProfileStatus(userId)
       dispatch(setProfileStatus(response.data));
    }
 }
