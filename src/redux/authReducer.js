@@ -36,6 +36,7 @@ export const authMeThunkCreator = () => (dispatch) => {
       .then(response => {
          if (response.data.resultCode === 0) {
             let { id, login, email } = response.data.data;
+            console.log(response.data)
             dispatch(setUserData(id, email, login, true));
          }
       })

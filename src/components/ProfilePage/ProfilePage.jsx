@@ -1,6 +1,7 @@
 import { Form, Field } from "react-final-form";
 import { Textarea } from "../../common/FormControl";
 import { maxLenghtCreator, requiredField } from "../../common/validators";
+import userPhoto from "../../assets/images/user.png.png";
 import PostsItem from "./PostsItem";
 import s from "./ProfilePage.module.css";
 import ProfileStatus from "./ProfileStatus";
@@ -17,14 +18,21 @@ const ProfilePage = (props) => {
         console.log(value)
     }
 
+    const onMainPhotoChange = (e) => {
+        if(e.target.files.length) {
+            props.savePhoto(e.target.files[0]);
+        }
+    }
+
     const composeValidators = (...validators) => value =>
         validators.reduce((error, validator) => error || validator(value), undefined)
 
     return (
         <div className={s.ProfilePage}>
             <div className={s.Header}>
-                <img src={props.ProfilePage.profile.photos.large} alt="profile large" />
+                <img src={props.ProfilePage.profile.photos.large || userPhoto} alt="profile large" />
                 <div className={s.name}>{props.ProfilePage.profile.fullName}</div>
+                {props.isOwner && <input type={"file"} onChange={onMainPhotoChange}/>}
                 <div className={s.status}>{props.ProfilePage.profile.lookingForAJobDescription}</div>
                 <ProfileStatus {...props} userId={props.userId} />
             </div>

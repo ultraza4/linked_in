@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ProfilePage from "./ProfilePage";
-import { addPost, getProfileThunk, setProfileStatusThunk, updateStatusThunk } from "../../redux/ProfilePageReducer";
+import { addPost, getProfileThunk, setProfileStatusThunk, updateStatusThunk,savePhoto } from "../../redux/ProfilePageReducer";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
@@ -9,7 +9,7 @@ import { compose } from "redux";
 const ProfilePageAPI = (props) => {
     let { userId } = useParams();
     if(!userId) {
-        userId = 2;
+        userId = 23698;
     }
     const setProfielStatus = props.setProfileStatusThunk;
     
@@ -22,7 +22,7 @@ const ProfilePageAPI = (props) => {
     }
     
     return <>
-        <ProfilePage {...props} userId={userId} />
+        <ProfilePage {...props} userId={userId} isOwner ={userId}/>
     </>
 }
 
@@ -36,6 +36,7 @@ export default compose(
     withAuthRedirect,
     connect(mapStateToProps, {
         addPost, getProfileThunk,
-        setProfileStatusThunk, updateStatusThunk
+        setProfileStatusThunk, updateStatusThunk,
+        savePhoto
     })
 )(ProfilePageAPI)
