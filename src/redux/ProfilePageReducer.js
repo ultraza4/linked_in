@@ -71,4 +71,12 @@ export const savePhoto = (file) => {
       }
    }
 }
+export const saveInfo = (profile) => {
+   return async (dispatch) => {
+      let response = await profileAPI.saveInfo(profile)
+      if (response.data.resultCode === 0) {
+         //dispatch(setUserProfile(response.data.data.photos))
+      }
+   }
+}
 export default ProfilePageReducer;

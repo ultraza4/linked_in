@@ -5,8 +5,11 @@ import userPhoto from "../../assets/images/user.png.png";
 import PostsItem from "./PostsItem";
 import s from "./ProfilePage.module.css";
 import ProfileStatus from "./ProfileStatus";
+import { useState } from "react";
 
 const ProfilePage = (props) => {
+    const [isEditable, setEdit] = useState(false);
+
     if (!props.ProfilePage.profile) {
         return "netu nifiga"
     }
@@ -15,11 +18,14 @@ const ProfilePage = (props) => {
 
     let AddPost = (value) => {
         props.addPost(value.newPostText);
-        console.log(value)
+    }
+    let saveInfo = (value) => {
+        setEdit(false);
+        props.saveInfo(value);
     }
 
     const onMainPhotoChange = (e) => {
-        if(e.target.files.length) {
+        if (e.target.files.length) {
             props.savePhoto(e.target.files[0]);
         }
     }
@@ -32,11 +38,79 @@ const ProfilePage = (props) => {
             <div className={s.Header}>
                 <img src={props.ProfilePage.profile.photos.large || userPhoto} alt="profile large" />
                 <div className={s.name}>{props.ProfilePage.profile.fullName}</div>
-                {props.isOwner && <input type={"file"} onChange={onMainPhotoChange}/>}
-                <div className={s.status}>{props.ProfilePage.profile.lookingForAJobDescription}</div>
-                <ProfileStatus {...props} userId={props.userId} />
+                {props.isOwner && <input className={s.photo_input} type={"file"} onChange={onMainPhotoChange} />}
             </div>
-            <div className={s.Dashboard}>Dashboard</div>
+
+            <div className={s.profile_info}>
+                {isEditable ?
+                    <>
+                        <Form
+                            onSubmit={saveInfo}
+                            initialValues={props.ProfilePage.profile}
+                            render={({ handleSubmit }) => (
+                                <form onSubmit={handleSubmit}>
+                                    <div>
+                                        <b>Full Name: </b> <br />
+                                        <Field
+                                            name="fullName"
+                                            component="input"
+                                        />
+                                    </div>
+                                    <div>
+                                        <b>Looking for a Job: </b> <br />
+                                        <Field
+                                            name="lookingForAJob"
+                                            component="input"
+                                            type="checkbox"
+                                        />
+                                    </div>
+                                    <div>
+                                        <b>My professional skills:</b> <br />
+                                        <Field
+                                            name="lookingForAJobDescription"
+                                            component="textarea"
+                                        />
+                                    </div>
+                                    <div>
+                                        <b>About me:</b> <br />
+                                        <Field
+                                            name="AboutMe"
+                                            component="textarea"
+                                        />
+                                    </div>
+                                    <div>
+                                        <button>Save</button>
+                                    </div>
+                                </form>
+                            )}
+                        />
+                    </>
+                    : <>
+                        <div>
+                            <b>User ID: </b>{props.ProfilePage.profile.userId}
+                        </div>
+                        <ProfileStatus {...props} userId={props.userId} />
+                        <div>
+                            <b>Full Name: </b>{props.ProfilePage.profile.fullName}
+                        </div>
+                        <div>
+                            <b>Looking for a Job: </b>{props.ProfilePage.profile.lookingForAJob ? "Yes" : "No"}
+                        </div>
+                        <div>
+                            <b>My professional skills: </b>{props.ProfilePage.profile.lookingForAJobDescription}
+                        </div>
+                        <div>
+                            <b>Contacts: </b>
+                            <div>
+                                {Object.keys(props.ProfilePage.profile.contacts).map(key => {
+                                    return <Contact key={key} contactTitle={key} contactValue={props.ProfilePage.profile.contacts[key]} />
+                                })}
+                            </div>
+                        </div>
+                        <br /><button onClick={() => { setEdit(true); }}>Edit</button></>
+                }
+            </div>
+
             <div className={s.AddPost}>
                 <Form
                     onSubmit={AddPost}
@@ -63,6 +137,10 @@ const ProfilePage = (props) => {
             </div>
         </div>
     )
+}
+
+const Contact = ({ contactTitle, contactValue }) => {
+    return <div><b>{contactTitle}: </b>{contactValue}</div>
 }
 
 export default ProfilePage;

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ProfilePage from "./ProfilePage";
-import { addPost, getProfileThunk, setProfileStatusThunk, updateStatusThunk,savePhoto } from "../../redux/ProfilePageReducer";
+import { addPost, getProfileThunk, setProfileStatusThunk, updateStatusThunk,savePhoto, saveInfo } from "../../redux/ProfilePageReducer";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
@@ -37,6 +37,6 @@ export default compose(
     connect(mapStateToProps, {
         addPost, getProfileThunk,
         setProfileStatusThunk, updateStatusThunk,
-        savePhoto
+        savePhoto,saveInfo
     })
 )(ProfilePageAPI)

@@ -10,11 +10,13 @@
    grid-area: h;
    padding: 10px;
    min-height: 400px;
+   width: 500px;
 }
 
-.Dashboard {
+.profile_info {
    grid-area: d;
    padding: 10px;
+   width: 400px;
 }
 
 .AddPost {
@@ -50,5 +52,4 @@
 .status {
    color: black;
    text-transform: uppercase;
-   text-align: center;
 }
